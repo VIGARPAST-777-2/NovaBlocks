@@ -10,6 +10,18 @@ app = Flask(__name__, static_folder=None)
 def root():
     return send_from_directory(os.path.join(VPI_DIR, "menu"), "index.html")
 
+@app.route("/editor")
+def editor():
+    return send_from_directory(os.path.join(VPI_DIR, "editor"), "index.html")
+
+@app.route("/user")
+def user_root():
+    return send_from_directory(os.path.join(VPI_DIR, "user"), "index.html")
+
+@app.route("/user/<username>")
+def user_page(username):
+    return send_from_directory(os.path.join(VPI_DIR, "user", username), "index.html")
+
 @app.route("/Visual Programming Interface/<path:path>")
 def serve_vpi(path):
     return send_from_directory(VPI_DIR, path)
