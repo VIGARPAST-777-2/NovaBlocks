@@ -1,0 +1,24 @@
+name: Deploy NovaBlocks to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main   # Cada push a main dispara el deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Clonar el repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Deploy a gh-pages
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./Visual\ Programming\ Interface   # Carpeta que contiene menu/, editor/, assets/
+          publish_branch: gh-pages                        # Rama de publicación
+          keep_files: false                               # Limpia la rama antes de publicar
