@@ -3,18 +3,21 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main   # Cada push a main dispara el workflow
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1️⃣ Clonar el repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Deploy Visual Programming Interface to GitHub Pages
+      # 2️⃣ Configurar GitHub Pages deploy
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: main          # Publica directamente en main
-          publish_dir: ./Visual\ Programming\ Interface
+          publish_dir: ./Visual\ Programming\ Interface   # Carpeta que contiene menu/, editor/, assets/
+          publish_branch: gh-pages                        # Publica directamente en gh-pages
+          keep_files: false                               # Limpia la rama antes de publicar
