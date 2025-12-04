@@ -5,6 +5,8 @@
     display: block;
     margin: 0 auto;
     background-color: #0b172f;
+    max-height: 300px;
+    object-fit: cover;
 }
 
 #open_editor_button {
