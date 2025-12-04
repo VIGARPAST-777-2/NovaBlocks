@@ -9,7 +9,6 @@
     object-fit: cover;
 }
 
-/* Menú */
 #menu {
     text-align: center;
     margin: 20px auto;
@@ -43,4 +42,55 @@
 .menu-button:hover {
     background-color: #14284a;
     transform: scale(1.05);
+}
+
+#main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0b172f;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 10px auto;
+    max-width: 1200px;
+    font-family: sans-serif;
+}
+
+.nav-left, .nav-center, .nav-right {
+    display: flex;
+    align-items: center;
+}
+
+#nav-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+#nav-title {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-center .nav-link,
+.nav-right .nav-link {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.nav-center .nav-link:hover,
+.nav-right .nav-link:hover {
+    background-color: #14284a;
+    transform: scale(1.05);
+}
+
+.user-name {
+    color: white;
+    margin-right: 10px;
+    font-weight: bold;
 }
