@@ -2,27 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NovaBlocks Editor</title>
+    <title>NovaBlocks | Editor</title>
     <link rel="icon" href="../assets/icon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav id="editor-nav">
+    <nav id="main-nav">
         <div class="nav-left">
             <img src="../assets/icon.png" alt="NovaBlocks Logo" id="nav-logo">
-            <span id="nav-title">NovaBlocks | Editor</span>
+            <span id="nav-title">NovaBlocks Editor</span>
         </div>
         <div class="nav-center">
-            <button class="nav-button" id="save-btn">Save</button>
-            <button class="nav-button" id="load-btn">Load from Computer</button>
-            <button class="nav-button" id="export-btn">Save to Computer</button>
+            <a href="../menu/index.html" class="nav-link">Menu</a>
+            <a href="../tutorials/index.html" class="nav-link">Tutorials</a>
+            <a href="../community/index.html" class="nav-link">Community</a>
+            <a href="../projects/index.html" class="nav-link">Projects</a>
+            <a href="../studio/index.html" class="nav-link">Studios</a>
         </div>
         <div class="nav-right">
-            <span class="user-name">Hello, User</span>
-            <a href="../index.html" class="nav-link">Menu</a>
+            <a id="user-link" href="../user/profile#USERNAME" class="nav-link">Hello, USER</a>
+            <a href="../settings/index.html" class="nav-link">Settings</a>
         </div>
     </nav>
+
+    <div id="editor-actions">
+        <button id="save-btn" class="editor-button">Save</button>
+        <button id="load-btn" class="editor-button">Load from Computer</button>
+        <button id="export-btn" class="editor-button">Save to Computer</button>
+    </div>
 
     <div id="editor-container">
         <div id="stage">
@@ -32,5 +40,13 @@
             <p>Blocks Panel</p>
         </div>
     </div>
+
+    <script>
+        // Cambiar USER dinámicamente según hash o variable JS
+        const username = "griffpatch"; // Esto se puede setear dinámicamente
+        const userLink = document.getElementById("user-link");
+        userLink.textContent = `Hello, ${username}`;
+        userLink.href = `../user/profile#${username}`;
+    </script>
 </body>
 </html>
