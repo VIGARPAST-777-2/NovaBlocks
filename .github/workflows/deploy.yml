@@ -32,7 +32,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./Visual\ Programming\ Interface
+          path: "Visual Programming Interface"
+
 
       # Publicar en Pages
       - name: Deploy to GitHub Pages
