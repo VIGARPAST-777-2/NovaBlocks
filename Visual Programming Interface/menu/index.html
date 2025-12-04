@@ -14,15 +14,15 @@
             <span id="nav-title">NovaBlocks</span>
         </div>
         <div class="nav-center">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="tutorials/index.html" class="nav-link">Tutorials</a>
-            <a href="community/index.html" class="nav-link">Community</a>
-            <a href="projects/index.html" class="nav-link">Projects</a>
+            <a href="../menu/index.html" class="nav-link">Menu</a>
+            <a href="../tutorials/index.html" class="nav-link">Tutorials</a>
+            <a href="../community/index.html" class="nav-link">Community</a>
+            <a href="../projects/index.html" class="nav-link">Projects</a>
+            <a href="../studio/index.html" class="nav-link">Studios</a>
         </div>
         <div class="nav-right">
-            <span class="user-name">Hello, User</span>
-            <a href="settings/index.html" class="nav-link">Settings</a>
-            <a href="logout.html" class="nav-link">Log Out</a>
+            <a id="user-link" href="../user/profile#griffpatch" class="nav-link">Hello, USER</a>
+            <a href="../settings/index.html" class="nav-link">Settings</a>
         </div>
     </nav>
 
@@ -31,10 +31,18 @@
     <section id="featured-projects">
         <h2>Featured Projects</h2>
         <div class="projects-grid">
-            <a href="project/#1" class="project-card">Project 1</a>
-            <a href="project/#2" class="project-card">Project 2</a>
-            <a href="project/#3" class="project-card">Project 3</a>
+            <a href="../projects/#1" class="project-card">Project 1</a>
+            <a href="../projects/#2" class="project-card">Project 2</a>
+            <a href="../projects/#3" class="project-card">Project 3</a>
         </div>
     </section>
+
+    <script>
+        // Cambiar USER dinámicamente según hash o variable JS
+        const username = "griffpatch"; // Esto se puede setear dinámicamente
+        const userLink = document.getElementById("user-link");
+        userLink.textContent = `Hello, ${username}`;
+        userLink.href = `../user/profile#${username}`;
+    </script>
 </body>
 </html>
