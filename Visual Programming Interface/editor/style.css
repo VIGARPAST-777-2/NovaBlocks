@@ -1,0 +1,70 @@
+#editor-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0b172f;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 10px auto;
+    max-width: 1200px;
+}
+
+#editor-nav .nav-left, #editor-nav .nav-center, #editor-nav .nav-right {
+    display: flex;
+    align-items: center;
+}
+
+#editor-nav #nav-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+#editor-nav #nav-title {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-button {
+    background-color: #0b172f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.nav-button:hover {
+    background-color: #14284a;
+    transform: scale(1.05);
+}
+
+#editor-container {
+    display: flex;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+#stage {
+    flex: 2;
+    background-color: #14284a;
+    border-radius: 10px;
+    height: 500px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#blocks-panel {
+    flex: 1;
+    background-color: #0b172f;
+    border-radius: 10px;
+    height: 500px;
+    padding: 10px;
+    color: white;
+}
