@@ -1,47 +1,18 @@
+body {
+    font-family: 'Comfortaa', cursive;
+    margin: 0;
+    background-color: #0b172f;
+    color: white;
+}
+
 #banner {
     width: 100%;
     height: auto;
     border-radius: 10px;
     display: block;
-    margin: 0 auto;
-    background-color: #0b172f;
+    margin: 20px auto;
     max-height: 300px;
     object-fit: cover;
-}
-
-#menu {
-    text-align: center;
-    margin: 20px auto;
-    max-width: 500px;
-    padding: 20px;
-    background-color: #0b172f;
-    border-radius: 10px;
-}
-
-#menu-info {
-    color: white;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-}
-
-.menu-button {
-    display: block;
-    width: 80%;
-    max-width: 300px;
-    margin: 10px auto;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: none;
-    background-color: #0b172f;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-.menu-button:hover {
-    background-color: #14284a;
-    transform: scale(1.05);
 }
 
 #main-nav {
@@ -53,7 +24,6 @@
     border-radius: 10px;
     margin: 10px auto;
     max-width: 1200px;
-    font-family: sans-serif;
 }
 
 .nav-left, .nav-center, .nav-right {
@@ -93,4 +63,36 @@
     color: white;
     margin-right: 10px;
     font-weight: bold;
+}
+
+#featured-projects {
+    text-align: center;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+#featured-projects h2 {
+    margin-bottom: 20px;
+}
+
+.projects-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.project-card {
+    background-color: #14284a;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    width: 200px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    background-color: #0d1b35;
 }
