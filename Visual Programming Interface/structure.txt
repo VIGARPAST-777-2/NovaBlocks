@@ -1,0 +1,44 @@
+Visual Programming Interface/
+│
+├─ menu/
+│   ├─ index.html
+│   └─ style.css
+│
+├─ editor/
+│   ├─ index.html
+│   └─ style.css
+│
+├─ tutorials/
+│   ├─ index.html
+│   └─ style.css
+│
+├─ community/
+│   ├─ index.html
+│   └─ style.css
+│
+├─ settings/
+│   ├─ index.html
+│   └─ style.css
+│
+├─ projects/
+│   ├─ index.html
+│   └─ style.css
+│
+├─ studio/
+│   ├─ index.html
+│   └─ style.css
+│
+├─ user/
+│   ├─ followers/
+│   │   ├─ followers.html
+│   │   └─ script.js
+│   ├─ following/
+│   │   ├─ following.html
+│   │   └─ script.js
+│   └─ projects/
+│       ├─ projects.html
+│       └─ script.js
+│
+├─ assets/
+│   ├─ icon.png
+│   └─ new_banner.png
