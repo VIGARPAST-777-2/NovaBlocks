@@ -1,0 +1,19 @@
+#banner {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+    background-color: #0b172f;
+}
+
+#open_editor_button {
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 20px auto;
+    display: block;
+    background-color: #0b172f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
