@@ -1,25 +1,40 @@
-name: Deploy NovaBlocks to GitHub Pages
+name: Deploy NovaBlocks (GitHub Pages New System)
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Add .nojekyll
-        run: touch ./Visual\ Programming\ Interface/.nojekyll
+      # Evitar Jekyll
+      - name: Disable Jekyll
+        run: touch "Visual Programming Interface/.nojekyll"
 
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
+      # Subir solo la carpeta correcta
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./Visual\ Programming\ Interface
-          publish_branch: gh-pages
-          keep_files: false
+          path: ./Visual\ Programming\ Interface
+
+      # Publicar en Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
