@@ -9,6 +9,11 @@
 
 #open_editor_button {
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
+    padding: 10px 20px;
+    margin: 20px auto;
+    display: block;
+    background-color: #0b172f;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
