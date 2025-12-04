@@ -1,4 +1,11 @@
-#editor-nav {
+body {
+    font-family: 'Comfortaa', cursive;
+    margin: 0;
+    background-color: #0b172f;
+    color: white;
+}
+
+#main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,35 +16,58 @@
     max-width: 1200px;
 }
 
-#editor-nav .nav-left, #editor-nav .nav-center, #editor-nav .nav-right {
+.nav-left, .nav-center, .nav-right {
     display: flex;
     align-items: center;
 }
 
-#editor-nav #nav-logo {
+#nav-logo {
     width: 40px;
     height: 40px;
     margin-right: 10px;
 }
 
-#editor-nav #nav-title {
+#nav-title {
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-.nav-button {
+.nav-center .nav-link,
+.nav-right .nav-link {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.nav-center .nav-link:hover,
+.nav-right .nav-link:hover {
+    background-color: #14284a;
+    transform: scale(1.05);
+}
+
+#editor-actions {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    gap: 10px;
+    max-width: 1200px;
+}
+
+.editor-button {
     background-color: #0b172f;
     color: white;
     border: none;
     border-radius: 8px;
-    padding: 8px 15px;
-    margin: 0 5px;
+    padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s;
 }
 
-.nav-button:hover {
+.editor-button:hover {
     background-color: #14284a;
     transform: scale(1.05);
 }
