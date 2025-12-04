@@ -1,173 +1,96 @@
-// -------------------
-// Project structure
-// -------------------
-let projectId = window.location.hash.substring(1) || generateRandomId();
+// script.js - NovaBlocks Editor
 
+const BACKEND_URL = "https://novablocks-save-projects.onrender.com";
+
+// Proyecto actual
 let currentProject = {
-    id: projectId,
+    id: window.location.hash ? window.location.hash.slice(1) : generateProjectId(),
     name: "New Project",
-    stage: {
-        currentBackdrop: "backdrop1",
-        backdrops: ["backdrop1"]
-    },
-    sprites: [
-        {
-            name: "Sprite1",
-            x: 0,
-            y: 0,
-            direction: 90,
-            costumes: ["costume1"],
-            sounds: ["sound1"],
-            blocks: []
-        }
-    ]
+    stage: {},
+    sprites: [],
+    blocks: [],
+    costumes: [],
+    sounds: [],
+    backgrounds: []
 };
 
-// -------------------
-// Utility functions
-// -------------------
-function generateRandomId() {
-    return Math.floor(Math.random() * 1000000).toString();
+// Generar un id aleatorio para nuevo proyecto
+function generateProjectId() {
+    return Math.floor(Math.random() * 1000000000).toString();
 }
 
-function updateProjectDisplay() {
-    document.getElementById("stage").innerHTML = `
-        <h3>Stage: ${currentProject.stage.currentBackdrop}</h3>
-        <p>Sprites: ${currentProject.sprites.map(s => s.name).join(", ")}</p>
-    `;
-}
-
-// -------------------
-// GitHub backend functions
-// -------------------
-const backendUrl = "https://novablocks-save-projects.onrender.com";
-
+// Guardar proyecto en backend
 async function saveProject() {
     try {
-        const res = await fetch(`${backendUrl}/save`, {
+        const response = await fetch(`${BACKEND_URL}/save`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(currentProject)
+            body: JSON.stringify({
+                project_id: currentProject.id,
+                content: currentProject
+            })
         });
-        const data = await res.json();
-        if (res.ok) alert("Project saved: " + currentProject.id);
-        else alert("Error saving project: " + JSON.stringify(data));
+        const data = await response.json();
+        if (data.status === "success") {
+            alert("Project saved successfully!");
+        } else {
+            alert("Error saving project: " + data.message);
+        }
     } catch (err) {
         console.error(err);
-        alert("Failed to save project.");
+        alert("Failed to save project");
     }
 }
 
-async function loadProjectFromBackend(id) {
+// Cargar proyecto desde backend
+async function loadProject(projectId) {
     try {
-        const res = await fetch(`${backendUrl}/load/${id}`);
-        if (!res.ok) throw new Error("Project not found");
-        const data = await res.json();
-        currentProject = data;
-        projectId = currentProject.id;
-        window.location.hash = projectId;
-        updateProjectDisplay();
-        alert("Project loaded: " + projectId);
+        const response = await fetch(`${BACKEND_URL}/load/${projectId}`);
+        const data = await response.json();
+        if (data.status === "success") {
+            currentProject = data.content;
+            console.log("Project loaded:", currentProject);
+            alert("Project loaded from server");
+        } else {
+            alert("Project not found");
+        }
     } catch (err) {
         console.error(err);
-        alert(err.message);
+        alert("Failed to load project");
     }
 }
 
-// -------------------
-// Local file functions
-// -------------------
-function saveToComputer() {
+// Exportar proyecto a computadora
+function exportProject() {
     const blob = new Blob([JSON.stringify(currentProject)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = `${currentProject.id}.nbp`;
     a.click();
-    URL.revokeObjectURL(a.href);
 }
 
-function loadFromComputer(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = e => {
-        try {
-            currentProject = JSON.parse(e.target.result);
-            projectId = currentProject.id;
-            window.location.hash = projectId;
-            updateProjectDisplay();
-            alert("Project loaded from file: " + projectId);
-        } catch {
-            alert("Invalid project file.");
-        }
-    };
-    reader.readAsText(file);
-}
-
-// -------------------
-// Blocks & Sprites management
-// -------------------
-function addSprite(name) {
-    const sprite = {
-        name: name || `Sprite${currentProject.sprites.length + 1}`,
-        x: 0,
-        y: 0,
-        direction: 90,
-        costumes: ["costume1"],
-        sounds: ["sound1"],
-        blocks: []
-    };
-    currentProject.sprites.push(sprite);
-    updateProjectDisplay();
-}
-
-function addBlockToSprite(spriteName, block) {
-    const sprite = currentProject.sprites.find(s => s.name === spriteName);
-    if (!sprite) return;
-    sprite.blocks.push(block);
-}
-
-function addBackdrop(name) {
-    currentProject.stage.backdrops.push(name);
-}
-
-function setBackdrop(name) {
-    if (currentProject.stage.backdrops.includes(name)) {
-        currentProject.stage.currentBackdrop = name;
-        updateProjectDisplay();
-    }
-}
-
-function addCostume(spriteName, costume) {
-    const sprite = currentProject.sprites.find(s => s.name === spriteName);
-    if (!sprite) return;
-    sprite.costumes.push(costume);
-}
-
-function addSound(spriteName, sound) {
-    const sprite = currentProject.sprites.find(s => s.name === spriteName);
-    if (!sprite) return;
-    sprite.sounds.push(sound);
-}
-
-// -------------------
-// Event listeners
-// -------------------
+// Botones del editor
 document.getElementById("save-btn").addEventListener("click", saveProject);
-document.getElementById("export-btn").addEventListener("click", saveToComputer);
+document.getElementById("load-btn").addEventListener("click", () => {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = ".nbp,.json";
+    fileInput.onchange = e => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+            currentProject = JSON.parse(reader.result);
+            console.log("Loaded from computer:", currentProject);
+            alert("Project loaded from your computer");
+        };
+        reader.readAsText(file);
+    };
+    fileInput.click();
+});
+document.getElementById("export-btn").addEventListener("click", exportProject);
 
-const loadBtn = document.getElementById("load-btn");
-const fileInput = document.createElement("input");
-fileInput.type = "file";
-fileInput.accept = ".nbp";
-fileInput.style.display = "none";
-fileInput.addEventListener("change", loadFromComputer);
-document.body.appendChild(fileInput);
-
-loadBtn.addEventListener("click", () => fileInput.click());
-
-// -------------------
-// Initialize display
-// -------------------
-updateProjectDisplay();
+// Cargar proyecto si hay hash en la URL
+if (window.location.hash) {
+    const projectId = window.location.hash.slice(1);
+    loadProject(projectId);
+}
