@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NovaBlocks</title>
+    <title>NovaBlocks Menu</title>
     <link rel="icon" href="../assets/icon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,12 +28,13 @@
 
     <img src="../assets/new_banner.png" id="banner" alt="NovaBlocks Banner">
 
-    <div id="menu">
-        <p id="menu-info">Welcome to NovaBlocks. Choose an option:</p>
-        <button onclick="window.location.href='editor/index.html'" class="menu-button">Open Editor</button>
-        <button onclick="window.location.href='tutorials/index.html'" class="menu-button">Tutorials</button>
-        <button onclick="window.location.href='community/index.html'" class="menu-button">Community</button>
-        <button onclick="window.location.href='settings/index.html'" class="menu-button">Settings</button>
-    </div>
+    <section id="featured-projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <a href="project/#1" class="project-card">Project 1</a>
+            <a href="project/#2" class="project-card">Project 2</a>
+            <a href="project/#3" class="project-card">Project 3</a>
+        </div>
+    </section>
 </body>
 </html>
