@@ -6,12 +6,12 @@ const backendURL = "https://novablocks-save-projects.onrender.com";
 let projectID = location.hash.substring(1) || generateID();
 let projectData = {
     project_id: projectID,
-    sprites: [],
-    backgrounds: [],
-    sounds: [],
-    code: []
+    sprites: [],        // Cada sprite tiene name, costume (imagen URL), x, y, width, height
+    backgrounds: [],    // Lista de fondos
+    code: []            // Lista de bloques de código simples
 };
 
+// DOM
 const stage = document.getElementById("stage");
 const blocksPanel = document.getElementById("blocks-panel");
 const saveBtn = document.getElementById("save-btn");
@@ -30,6 +30,7 @@ function updateURL() {
 // --- RENDER STAGE ---
 function renderStage() {
     stage.innerHTML = "";
+    // Fondo
     if(projectData.backgrounds.length > 0){
         const bg = document.createElement("img");
         bg.src = projectData.backgrounds[0].src;
@@ -37,6 +38,7 @@ function renderStage() {
         bg.style.height = "100%";
         stage.appendChild(bg);
     }
+    // Sprites
     projectData.sprites.forEach(sprite => {
         const img = document.createElement("img");
         img.src = sprite.costume;
@@ -49,37 +51,31 @@ function renderStage() {
     });
 }
 
-// --- BLOCKS PANEL (Demo) ---
-function addBlock(type) {
-    projectData.code.push({ type });
+// --- BLOCKS PANEL ---
+function addBlock(codeLine) {
+    projectData.code.push({ code: codeLine });
     renderBlocks();
 }
 
 function renderBlocks() {
     blocksPanel.innerHTML = "";
-    projectData.code.forEach((b, i) => {
-        const block = document.createElement("div");
-        block.className = "block";
-        block.textContent = b.type;
-        blocksPanel.appendChild(block);
+    projectData.code.forEach(block => {
+        const div = document.createElement("div");
+        div.className = "block";
+        div.textContent = block.code;
+        blocksPanel.appendChild(div);
     });
 }
 
-// --- SPRITES ---
-function addSprite(name, costume) {
-    projectData.sprites.push({name, costume, x: 0, y: 0, width: 100, height: 100});
+// --- SPRITE / BACKGROUND ---
+function addSprite(name, url) {
+    projectData.sprites = [{ name, costume: url, x: 50, y: 50, width: 100, height: 100 }];
     renderStage();
 }
 
-// --- BACKGROUNDS ---
-function setBackground(src) {
-    projectData.backgrounds = [{ src }];
+function setBackground(url) {
+    projectData.backgrounds = [{ src: url }];
     renderStage();
-}
-
-// --- SOUNDS ---
-function addSound(name, src) {
-    projectData.sounds.push({name, src});
 }
 
 // --- SAVE / LOAD ---
@@ -107,7 +103,7 @@ async function loadProject() {
 
 // --- EXPORT ---
 function exportToComputer() {
-    const blob = new Blob([JSON.stringify(projectData)], {type: "application/json"});
+    const blob = new Blob([JSON.stringify(projectData)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = `${projectID}.nbp`;
@@ -125,8 +121,7 @@ loadProject();
 renderStage();
 renderBlocks();
 
-// --- DEMO DATA ---
-addSprite("Cat", "../assets/icon.png");
-setBackground("../assets/new_banner.png");
-addBlock("move");
-addBlock("turn");
+// --- DEMO DATA SIMPLE ---
+addSprite("Cat", "https://upload.wikimedia.org/wikipedia/commons/4/4c/Push_van_cat.jpg");
+setBackground("https://upload.wikimedia.org/wikipedia/commons/0/0a/Blue_sky_%28pixabay%29.jpg");
+addBlock("console.log('Hello NovaBlocks!');");
