@@ -7,7 +7,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav id="main-nav">
+        <div class="nav-left">
+            <img src="../assets/icon.png" alt="NovaBlocks Logo" id="nav-logo">
+            <span id="nav-title">NovaBlocks</span>
+        </div>
+        <div class="nav-center">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="tutorials/index.html" class="nav-link">Tutorials</a>
+            <a href="community/index.html" class="nav-link">Community</a>
+            <a href="projects/index.html" class="nav-link">Projects</a>
+        </div>
+        <div class="nav-right">
+            <span class="user-name">Hello, User</span>
+            <a href="settings/index.html" class="nav-link">Settings</a>
+            <a href="logout.html" class="nav-link">Log Out</a>
+        </div>
+    </nav>
+
     <img src="../assets/new_banner.png" id="banner" alt="NovaBlocks Banner">
-    <button onclick="window.location.href='../editor/index.html'" id="open_editor_button" >Open Editor</button>
+
+    <div id="menu">
+        <p id="menu-info">Welcome to NovaBlocks. Choose an option:</p>
+        <button onclick="window.location.href='editor/index.html'" class="menu-button">Open Editor</button>
+        <button onclick="window.location.href='tutorials/index.html'" class="menu-button">Tutorials</button>
+        <button onclick="window.location.href='community/index.html'" class="menu-button">Community</button>
+        <button onclick="window.location.href='settings/index.html'" class="menu-button">Settings</button>
+    </div>
 </body>
 </html>
